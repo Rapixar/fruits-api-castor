@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/app
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: fruits_db
+
+volumes:
+  postgres_data:
